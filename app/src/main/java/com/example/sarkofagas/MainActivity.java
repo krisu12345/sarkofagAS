@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.sarkofagas.databinding.ActivityMainBinding;
 
@@ -58,15 +59,13 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 MainActivity.this.runOnUiThread(new Runnable(){
+                    @Override
                     public void run(){
+                        Log.d("Wypis",urls.get(0));
                         binding.wyswietl.setText(urls.get(0)); // My TextFile has 3 lines
                     }
                 });
-
             }
-
-
         }).start();
             };
-
     }
