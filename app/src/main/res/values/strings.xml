@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">sarkofag AS</string>
+    <string name="sekretariat">SEKRETARIAT</string>
+    <string name="button">Button</string>
+    <string name="radiobutton">Nauczyciel</string>
+    <string name="radiobutton1">Pracownik</string>
+    <string name="radiobutton2">Uczen</string>
+    <string name="pracownik">Pracownik</string>
+    <string name="uczen">Uczen</string>
+    <string name="poka_dane">Pokaż dane</string>
+</resources>
