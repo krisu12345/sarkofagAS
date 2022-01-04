@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.sarkofagas.databinding.ActivityMainBinding;
 
@@ -14,6 +16,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.CollationElementIterator;
 import java.util.ArrayList;
 
 
@@ -21,16 +24,20 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_main);
 
+        binding.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(binding.radioButton2.isChecked()){
+                    binding.textView2.setText("nigg");
+                }
+            }
+        });
 
         new Thread(new Runnable(){
 
@@ -40,14 +47,16 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
                     // Create a URL for the desired page
-                    URL url = new URL("https://raw.githubusercontent.com/krisu12345/Sarkofag/master/nauczyciel.txt"); //My text file location
+                    URL url = new URL("https://raw.githubusercontent.com/krisu12345/Sarkofag/master/pracownik.txt");
+                    //URL urlp = new URL("https://raw.githubusercontent.com/krisu12345/Sarkofag/master/pracownik.txt");
+                    //URL urlu = new URL("https://raw.githubusercontent.com/krisu12345/Sarkofag/master/uczen.txt");//My text file location
                     //First open the connection
-                    HttpURLConnection conn=(HttpURLConnection) url.openConnection();
-                    conn.setConnectTimeout(60000); // timing out in a minute
 
-                    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    HttpURLConnection con=(HttpURLConnection)url.openConnection();
+                    con.setConnectTimeout(60000); // timing out in a minute
 
-                    //t=(TextView)findViewById(R.id.TextView1); // ideally do this in onCreate()
+                    BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+
                     String str;
                     while ((str = in.readLine()) != null) {
                         urls.add(str);
@@ -61,9 +70,10 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.runOnUiThread(new Runnable(){
                     @Override
                     public void run(){
-                        Log.d("Wypis",urls.get(0));
-                        binding.wyswietl.setText(urls.get(0)); // My TextFile has 3 lines
+                        TextView cos = (TextView) findViewById(R.id.dane);
+                        cos.setText(urls.get(0));
                     }
+
                 });
             }
         }).start();
