@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.sarkofagas.databinding.ActivityMainBinding;
@@ -20,7 +21,7 @@ import java.text.CollationElementIterator;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     ActivityMainBinding binding;
 
@@ -30,12 +31,12 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_main);
 
-        binding.button.setOnClickListener(new View.OnClickListener() {
+        Button button = findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(binding.radioButton2.isChecked()){
-                    binding.textView2.setText("nigg");
-                }
+                TextView tekst = (TextView) findViewById(R.id.textView2);
+                tekst.setText("pindol");
             }
         });
 
@@ -78,4 +79,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }).start();
             };
-    }
+
+
+}
